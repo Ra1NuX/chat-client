@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="icon.png">
+    <title> - Chat - </title>
+</head>
+<body>
+
+    <div id="playersOnline"></div> 
+    <div id="mainMessages" ></div>
+
+    <form action="" id="myForm">
+        <input type="text" id="main" placeholder="Mensaje" autocomplete="off"/> 
+        <input type="submit" value="Enviar" id="btnMain" >
+    </form>
+    <script src="https://cdn.socket.io/4.2.0/socket.io.min.js" integrity="sha384-PiBR5S00EtOj2Lto9Uu81cmoyZqR57XcOna1oAuVuIEjzj0wpqDVfD0JA9eXlRsj" crossorigin="anonymous"></script>
+    <script src="client.js"></script>
+</body>
+</html>

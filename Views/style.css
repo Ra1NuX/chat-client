@@ -1,0 +1,40 @@
+#mainMessages{
+    overflow-y:scroll;
+    max-height: 82vh;
+    height: 82vh;
+    flex: 1;
+    font-family: 'roboto';
+}
+#mainMessages::-webkit-scrollbar {
+    width: 5px;               /* width of the entire scrollbar */
+  }
+  
+
+  
+#mainMessages::-webkit-scrollbar-thumb {
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #33D1FF;  /* creates padding around scroll thumb */
+  }
+#main{
+    flex:1;
+    margin: 0;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: gray;
+    padding-top: 2em;
+}
+#myForm{
+    display: flex;
+}
+#main:focus{
+    border-color: lightskyblue
+}
+
+#btnMain{
+    flex:.3;
+    flex-wrap: wrap;
+    margin: 0;
+    border-radius: 0 5px 5px 0;
+    border: 0;
+    height: 45px;
+}
