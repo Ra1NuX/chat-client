@@ -1,7 +1,7 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-
+let nombres; 
 
 let nombre = urlParams.get('nombre'); 
 const server = urlParams.get('servidor')
@@ -38,7 +38,8 @@ socket.on('clientMessage', (msg) => {
 })
 
 socket.on('online', (online) => {
-    playersOnline.innerHTML = `${online}`;
+    playersOnline.innerHTML = `${online[0]}`;
+    nombres = online[1];
 })
 
 

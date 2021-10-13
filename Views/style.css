@@ -1,7 +1,6 @@
 #mainMessages{
     overflow-y:scroll;
-    max-height: 82vh;
-    height: 82vh;
+    height: 84vh;
     flex: 1;
     font-family: 'roboto';
 }
@@ -21,7 +20,7 @@
     outline: 0;
     border-width: 0 0 2px;
     border-color: gray;
-    padding-top: 2em;
+    padding: .5em;
 }
 #myForm{
     display: flex;
@@ -29,12 +28,20 @@
 #main:focus{
     border-color: lightskyblue
 }
+#main{
+    background-color: #eaeaea;
+    border-radius: 20px;
+    padding-left: 10px;
+}
 
 #btnMain{
-    flex:.3;
+    background-color: #eaeaea;
     flex-wrap: wrap;
     margin: 0;
-    border-radius: 0 5px 5px 0;
-    border: 0;
-    height: 45px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    border-width: 0 0 2px;
+    border-color: lightskyblue;
+    margin-left: 5px;
 }

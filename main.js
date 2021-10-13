@@ -27,8 +27,8 @@ const createWindows = () => {
             }
         }]
 
-    const mainMenu = Menu.buildFromTemplate(template)
-    Menu.setApplicationMenu(mainMenu)
+    // const mainMenu = Menu.buildFromTemplate(template)
+    // Menu.setApplicationMenu(mainMenu)
 
     mainWindows.loadFile('./Views/register.html')
 
