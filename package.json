@@ -1,10 +1,11 @@
 {
-  "name": "my-electron-app",
-  "version": "1.0.0",
+  "name": "xchat",
+  "version": "1.0",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack:win64": "electron-packager . XChat --out=dist/win --platform=win32 --arch=x64 app-version=1.0 --icon=Views/public/icon.ico"
   },
   "author": "",
   "license": "ISC",
