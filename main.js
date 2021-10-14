@@ -17,7 +17,7 @@ const createWindows = () => {
         maximizable: false,
         fullscreenable: false,
         title: ' - Chat -',
-        icon: './icon.png',
+        icon: 'Views/public/icon.png',
         titleBarStyle: "hiddenInset"
     });
 
@@ -27,8 +27,8 @@ const createWindows = () => {
             }
         }]
 
-    // const mainMenu = Menu.buildFromTemplate(template)
-    // Menu.setApplicationMenu(mainMenu)
+    const mainMenu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(mainMenu)
 
     mainWindows.loadFile('./Views/register.html')
 

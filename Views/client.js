@@ -11,6 +11,7 @@ const message = document.getElementById('main');
 const btn = document.getElementById('btnMain')
 const canvasMessage = document.getElementById('mainMessages');
 const playersOnline = document.getElementById('playersOnline')
+const writting = document.getElementById('writtingSpan');
 
 const clientMessage = (msg) =>{
 
@@ -23,10 +24,15 @@ return (`
 </div>
 `)
 }
-const serverMessage  = (msg) => `
+const serverMessage  = (msg) => {
+const mitexto = '| Conectado al servidor! |'
+return msg != mitexto ?  `
 <span style="color: #faaaaa; justify-content: center; font-variant: small-caps"> ${msg}</span> 
 </br> 
+` : `
+<div style="color: #faaaaa; justify-content: center; text-align:center; font-variant: small-caps"> ${msg}</div>
 `
+}
 
 const personalMessage = (text, timeago) => {
     return (`<div class="personalMessageBox">
@@ -59,7 +65,20 @@ socket.on('serverMessage', (msg) => {
 socket.on('clientMessage', (msg) => {
     canvasMessage.innerHTML +=  clientMessage(msg);
     jQuery("time.timeago").timeago();
+    writting.innerText = ''
     scrollBottom();
+})
+let isWritting = false; 
+socket.on('isWritting', nombre => {
+    while(isWritting == false){
+        isWritting = true;
+        writting.innerText = `${nombre} esta escribiendo...`;
+        setTimeout(function() {
+            isWritting = false;
+            writting.innerText = '';
+
+        },2000)
+    }
 })
 
 socket.on('online', (online) => {
@@ -67,6 +86,9 @@ socket.on('online', (online) => {
     nombres = online[1];
 })
 
+message.addEventListener('input',() => {
+    socket.emit('writting')
+})
 
 btn.addEventListener('click', e => {
     e.preventDefault();
