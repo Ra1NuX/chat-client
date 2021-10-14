@@ -18,6 +18,4 @@ y usar el comando:
 para iniciar el programa.
 
 
-**ESTO ES UNA BETA**
-=======
 **ESTO ES UNA ALPHA**
