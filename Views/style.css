@@ -1,8 +1,9 @@
 #mainMessages{
     overflow-y:scroll;
-    height: 84vh;
-    flex: 1;
+    min-height: 83.5vh;
+    max-height: 83.5vh;
     font-family: 'roboto';
+    margin-bottom: 10px;
 }
 #mainMessages::-webkit-scrollbar {
     width: 5px;               /* width of the entire scrollbar */
@@ -45,3 +46,78 @@
     border-color: lightskyblue;
     margin-left: 5px;
 }
+#sendIcon {
+    width: 22px;
+    height: 18px;
+    margin-top: 5px;
+    margin-left: 0px;
+  }
+  ion-icon{
+      transform: translate(0, 15%);
+      color: #33D1FF;
+  }
+
+  .clientMessageBox{
+    margin-top: 10px;
+    background-color: #f5f5f5;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    padding-block: 5px;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius:0 ;
+    margin-right: 5px;
+  }
+  .clientName{
+    font-variant:'small-caps'; 
+    font-size: 12px;
+    color: #1cb8e7;
+    font-weight: 500;
+  }
+  .clientMessage{
+    padding-left: .5em;
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+
+  .personalMessageBox{
+    margin-top: 10px;
+    padding-top: 5px;
+    background-color: #4ad5ff65;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    padding-block: 5px;
+    display: flex;
+    flex-direction: column;
+    border-top-right-radius:0 ;
+    margin-right: 5px;
+  }
+  .personalMessage{
+    padding-left: .5em;
+    font-size: 14px;
+    word-wrap: break-word;
+    text-align: end;
+  }
+
+  .separator{
+    margin-bottom:5px;width: 80%; height: .5px; background-color: #dadada50; margin-bottom: 1em;
+  }
+  time{
+    font-size: 10px;
+    color: gray;
+  }
+  .timebox{
+    display:flex;
+    flex-direction: row-reverse;
+  }
+  #grppo{
+      margin-top: -10px;
+      flex:.3
+  }
+  .main{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+  }

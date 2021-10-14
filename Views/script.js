@@ -1,4 +1,5 @@
 const po = document.getElementById('playersOnline');
+const boxpo = document.getElementById('grppo');
 
 // create tooltip element
 const ttBox = document.createElement("div");
@@ -6,14 +7,15 @@ const ttBox = document.createElement("div");
 // set style
 ttBox.id = "tt";
 ttBox.style.visibility = "hidden"; // make it hidden till mouse over
-ttBox.style.position = "fixed";
-ttBox.style.top = po.style.top + "0.1rem";
-ttBox.style.left = po.style.top + "0.1rem";
-ttBox.style.padding = "0.1rem";
-ttBox.style.width = "15rem";
-ttBox.style.borderRadius = "1rem";
-ttBox.style.border = "solid thin lightgray";
-ttBox.style.backgroundColor = "#dadada";
+ttBox.style.position = "absolute";
+ttBox.style.paddingLeft = "0.5rem";
+ttBox.style.paddingRight = "0.5rem";
+ttBox.style.paddingBottom = "0.2rem";
+ttBox.style.maxWidth = "15rem";
+ttBox.style.borderRadius = ".3rem";
+ttBox.style.border = "solid 0.5px #ffffff ";
+ttBox.style.backgroundColor = "#fafafa";
+ttBox.style.boxShadow = "0px 0px 10px #dadada";
 
 // insert into DOM
 document.body.appendChild(ttBox);
@@ -25,15 +27,14 @@ const ttTurnOn = ((evt) => {
     const coordY = boundBox.top;
 
     // adjust bubble position
-    ttBox.style.left = (coordX + 40).toString() + "px";
-    ttBox.style.top = (coordY + 40).toString() + "px";
+    ttBox.style.left = (45).toString() + "px";
+    ttBox.style.top = (coordY+10).toString() + "px";
 
     // add bubble content. Can include image or link
     ttBox.innerHTML = '';
     for (const key in nombres) {
             const element = nombres[key];
             ttBox.innerHTML += element + '</br>';
-            console.log(nombres)
         }
     
     
@@ -44,6 +45,6 @@ const ttTurnOn = ((evt) => {
 
 const ttTurnOff = (() => { ttBox.style.visibility = "hidden"; });
 
-po.addEventListener("mouseover", ttTurnOn , false);
-po.addEventListener("mouseout", ttTurnOff , false);
+grppo.addEventListener("mouseover", ttTurnOn , false);
+grppo.addEventListener("mouseout", ttTurnOff , false);
 document.getElementById("tt") . addEventListener("click", ttTurnOff , false);

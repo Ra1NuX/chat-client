@@ -12,7 +12,7 @@ let mainWindows;
 const createWindows = () => {
     mainWindows = new BrowserWindow({
         width: 320,
-        height: 490,
+        height: 600,
         resizable: false,
         maximizable: false,
         fullscreenable: false,
