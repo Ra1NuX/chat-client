@@ -1,14 +1,13 @@
 const {app, BrowserWindow} = require('electron')
-const {dialog} = require('electron');
+const {ipcMain} = require('electron');
 const {Menu} = require('electron/main');
+const path = require('path')
 
 
 // const debug = require('electron-debug');
 // debug();
 
-
 let mainWindows;
-
 const createWindows = () => {
     mainWindows = new BrowserWindow({
         width: 320,
@@ -17,8 +16,11 @@ const createWindows = () => {
         maximizable: false,
         fullscreenable: false,
         title: ' - Chat -',
-        icon: 'Views/public/icon.png',
-        titleBarStyle: "hiddenInset"
+        icon: 'Views/public/assets/icon.png',
+        titleBarStyle: "hiddenInset",
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        },
     });
 
     const template = [{
@@ -27,16 +29,21 @@ const createWindows = () => {
             }
         }]
 
-    const mainMenu = Menu.buildFromTemplate(template)
-    Menu.setApplicationMenu(mainMenu)
+    // const mainMenu = Menu.buildFromTemplate(template)
+    // Menu.setApplicationMenu(mainMenu)
 
     mainWindows.loadFile('./Views/register.html')
+
 
     mainWindows.on('close', function () {
         mainWindows = null;
     })
 
 }
+
+ipcMain.on('put-on-focus', () => {
+    app.focus();
+})
 
 app.on('ready', createWindows)
 
