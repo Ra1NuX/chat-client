@@ -29,21 +29,29 @@ const createWindows = () => {
             }
         }]
 
-    const mainMenu = Menu.buildFromTemplate(template)
-    Menu.setApplicationMenu(mainMenu)
+    // const mainMenu = Menu.buildFromTemplate(template)
+    // Menu.setApplicationMenu(mainMenu)
 
     mainWindows.loadFile('./Views/register.html')
 
+    mainWindows.webContents.on('new-window', function(e, url) {
+        e.preventDefault();
+        require('electron').shell.openExternal(url);
+      });
+    
 
     mainWindows.on('close', function () {
         mainWindows = null;
     })
+
+
 
 }
 
 ipcMain.on('put-on-focus', () => {
     app.focus();
 })
+
 
 app.on('ready', createWindows)
 
