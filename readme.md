@@ -1,21 +1,27 @@
 
-# Instalacion : 
+# Instalation Guide [Uncompiled] : 
 
-Requisitos:   
-- Tener Node instalado.
+Requirements:   
+- NodeJS Version 16.x.x onwards.
 
-Para usar el programa: 
-iniciar un PowerShell desde la carpeta descargada.
-usar el comando:
+To use:
+
+_create a Terminal in chat directory, (ex:  C:/Windows/Users/User/Xchat-win32-x64 ) and download the npm dependencies:_
 
     npm i 
     
-para instalar las dependencias.
-y usar el comando:
+ _When all depencies are installed we can use the next command to start the electron program._
 
     npm start
 
-para iniciar el programa.
 
 
-**ESTO ES UNA ALPHA**
+# To do:
+>
+>- [x] Give Support to Linux OS. 
+>- [x] Create Notifcations.
+>- [ ] Create link when clicked on a URL. 
+>- [ ] Create logs.
+>- [ ] Automatic Login in a preference server.
+>- [ ] Create configuration files.
+>- [ ] English Lenguage supp.
