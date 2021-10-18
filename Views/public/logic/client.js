@@ -24,8 +24,10 @@ const writting = document.getElementById('writtingSpan');
 let UnreadMessages = 0;
 
 const createNoti = (title, body, callback) => {
-    const noti = new Notification(title, {body});
-    if (callback) noti.onclick = () => console.log(window.electron.focusApp()) ;
+    if(!document.hasFocus()){
+        const noti = new Notification(title, {body});
+        if (callback) noti.onclick = () => console.log(window.electron.focusApp()) ;
+    }
 }
 
 

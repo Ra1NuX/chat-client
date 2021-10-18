@@ -44,13 +44,12 @@ const createWindows = () => {
         mainWindows = null;
     })
 
-
-
 }
 
 ipcMain.on('put-on-focus', () => {
     app.focus();
 })
+
 
 
 app.on('ready', createWindows)
