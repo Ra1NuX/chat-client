@@ -55,6 +55,7 @@ ipcMain.on('put-on-focus', () => {
 
 app.on('ready', createWindows)
 
+app.setAppUserModelId('XChat')
 
 app.on('activate', function () {
     if (mainWindows == null) {
