@@ -1,6 +1,6 @@
 {
   "name": "xchat",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -19,5 +19,4 @@
     "jquery": "^3.6.0",
     "socket.io": "^4.2.0"
   }
-  
 }
