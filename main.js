@@ -2,6 +2,9 @@ const {app, BrowserWindow} = require('electron')
 const {ipcMain} = require('electron');
 const {Menu} = require('electron/main');
 const path = require('path')
+const euX = require('electron-updater-x')
+
+if(euX.updater('Ra1NuX', 'chat-client')) return 
 
 
 // const debug = require('electron-debug');
