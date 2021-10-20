@@ -4,12 +4,16 @@ const {Menu} = require('electron/main');
 const path = require('path')
 const euX = require('electron-updater-x')
 
-if(euX.updater('Ra1NuX', 'chat-client')) return 
+const update = async () => {
+    const res = await euX.updater('Ra1NuX', 'chat-client', (e) => {
+        console.log(e)
+        e == true ? app.exit() : console.log("descargand...");
+    });
+    return res;
+}
 
-
-// const debug = require('electron-debug');
-// debug();
-
+update().then((e) => {
+console.log(e)
 let mainWindows;
 const createWindows = () => {
     mainWindows = new BrowserWindow({
@@ -63,4 +67,5 @@ app.on('activate', function () {
     if (mainWindows == null) {
         createWindows()
     }
+})
 })
