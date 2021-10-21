@@ -3,25 +3,28 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
 let nombres;
-
+let imageUrl;
+let isWritting = false;
 let nombre = urlParams.get('nombre');
 const server = urlParams.get('servidor')
-let parsedServer;
 
 const analizeServer = (server) => {
     havePort = server.match(/(:[0-9]+)/g);
     if(havePort) return server;
     return server + ':3301';
 }
+const getHTML = (id) => document.getElementById(id);
 
 const socket = io.connect(`http://${analizeServer(server)}`);
-const message = document.getElementById('main');
-const btn = document.getElementById('btnMain')
-const canvasMessage = document.getElementById('mainMessages');
-const playersOnline = document.getElementById('playersOnline')
-const writting = document.getElementById('writtingSpan');
 
-let UnreadMessages = 0;
+const message = getHTML('main');
+const btn = getHTML('btnMain')
+const canvasMessage = getHTML('mainMessages');
+const playersOnline = getHTML('playersOnline')
+const writting = getHTML('writtingSpan');
+const imgPrev = getHTML('imagePreview');
+
+
 
 const createNoti = (title, body, callback) => {
     if(!document.hasFocus()){
@@ -29,41 +32,55 @@ const createNoti = (title, body, callback) => {
         if (callback) noti.onclick = () => console.log(window.electron.focusApp()) ;
     }
 }
-
-
-const clientMessage = (name, message, timestamp) => {
+const clearCanvas = (canvas) => {
+    canvas.innerHTML = ''
+}
+const showClientMessage = (canvas, name, message, timestamp,img) => {
     const mifecha = new Date(timestamp).toISOString()
-    return (`
+    let myImg;
+    img ? myImg = `<div class="imageprev"><img style=" max-width:85vw;height: 100%; max-height: 75vh" src="${img}"/></div>` : myImg = '';  
+    canvas.innerHTML += `
 <div class="clientMessageBox">
     <span class="clientName">${name}:</span>
+    
+    ${myImg}
+    
     <span class="clientMessage">${message}</span>
     <div class="timebox"><time class="timeago" datetime="${mifecha}"></time></div>
 </div>
-`)
-}
-const serverMessage = (msg) => {
-    const mitexto = '| Conectado al servidor! |'
-    return msg != mitexto ? `
-<span style="color: #faaaaa; justify-content: center; font-variant: small-caps"> ${msg}</span> 
-</br> 
-` : `
-<div style="color: #faaaaa; justify-content: center; text-align:center; font-variant: small-caps"> ${msg}</div>
 `
 }
-const personalMessage = (text, timeago) => {
-    return (`<div class="personalMessageBox">
+const showServerMessage = (canvas,msg) => {
+    const mitexto = '| Conectado al servidor! |'
+    let res;
+    msg != mitexto ? 
+    res = `<span style="color: #faaaaa; justify-content: center; font-variant: small-caps"> ${msg}</span></br> ` 
+    : 
+    res = `<div style="color: #faaaaa; justify-content: center; text-align:center; font-variant: small-caps"> ${msg}</div>`
+canvas.innerHTML += res;
+}
+const showPersonalMessage = (canvas, text, timeago,img) => {
+    let myImg;
+    img ? myImg = `<div class="imageprev"><img style=" max-width:85vw;height: 100%; max-height: 75vh" src="${img}"/></div>` : myImg = '';  
+    canvas.innerHTML += `
+    <div class="personalMessageBox">
+        ${myImg}
         <span class="personalMessage">${text}</span>
         <div class="timebox"><time class="timeago" datetime="${timeago}"></time></div>
     </div>
-    `)
+    `
 }
-
-
+const showImage = (canvas, url) => {
+    canvas.innerHTML = `
+    <div class="imageprev">
+        <div class="imgPrevCont">
+            <img style="max-width:90vw;height: 100%; max-height: 75vh" src="${url}"/>
+        </div>
+    </div>`
+}
 const scrollBottom = () => {
-    console.log(canvasMessage.scrollHeight)
     canvasMessage.scrollTop = canvasMessage.scrollHeight;
 }
-
 const handleText = (text) => {
     let returnedText = text
     let regex = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
@@ -80,9 +97,9 @@ const handleText = (text) => {
     });
     return returnedText
 }
+const noTag = (string) => {return string.replace(/</g, "&lt;").replace(/>/g, "&gt;")};
 
-nombre = nombre.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
+nombre = noTag(nombre);
 
 if (nombre != '') {
     socket.on('connect', () => {
@@ -91,21 +108,21 @@ if (nombre != '') {
     })
 
     socket.on('serverMessage', (msg) => {
-        canvasMessage.innerHTML += serverMessage(msg);
+        showServerMessage(canvasMessage,msg);
         scrollBottom();
     })
 
     socket.on('clientMessage', (msg) => {
-        const { name, message, timestamp } = msg
-        createNoti(`${name}: `, message, () => focusApp())
-        const edittedMessage = handleText(message)
-        canvasMessage.innerHTML += clientMessage(name, edittedMessage, timestamp);
+        const { name, data, timestamp } = msg
+        const edittedMessage = handleText(data[0]);
+        createNoti(`${name}: `, data[0], () => focusApp())
+        showClientMessage(canvasMessage,name, edittedMessage, timestamp, data[1]);
         jQuery("time.timeago").timeago();
-        writting.innerText = ''
+        clearCanvas(writting)
         scrollBottom();
     })
 
-    let isWritting = false;
+
     socket.on('isWritting', nombre => {
         while (isWritting == false) {
             isWritting = true;
@@ -131,19 +148,42 @@ if (nombre != '') {
         e.preventDefault();
         // message.value 
         let text = message.value.trim()
-
+        let messageContent;
         if (text != '') {
-            text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            socket.emit('message', text)
+            text = noTag(text)
+            messageContent = [text,imageUrl]
+            socket.emit('message', messageContent);
             let timeago = new Date().toISOString()
             const edittedMessage = handleText(text)
-            canvasMessage.innerHTML += personalMessage(edittedMessage, timeago)
+            showPersonalMessage(canvasMessage, edittedMessage, timeago, imageUrl);
+            clearCanvas(imgPrev);
             jQuery("time.timeago").timeago();
+            imageUrl = ''
             message.value = ''
             scrollBottom()
         }
 
     })
+
+
+    message.onpaste = function (event) {
+        var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+        console.log(JSON.stringify(items)); // might give you mime types
+        for (var index in items) {
+            var item = items[index];
+            if (item.kind === 'file') {
+                var blob = item.getAsFile();
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    const img = event.target.result
+                    console.log(event.target.result); // data url!
+                    showImage(imgPrev, img);
+                    imageUrl = event.target.result;
+                }; 
+                reader.readAsDataURL(blob);
+            }
+        }
+    };
 
 
 

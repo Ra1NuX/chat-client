@@ -1,19 +1,23 @@
 const {app, BrowserWindow} = require('electron')
 const {ipcMain} = require('electron');
+const isDev = require('electron-is-dev')
 const {Menu} = require('electron/main');
 const path = require('path')
 const euX = require('electron-updater-x')
 
 const update = async () => {
-    const res = await euX.updater('Ra1NuX', 'chat-client', (e) => {
-        console.log(e)
-        e == true ? app.exit() : console.log("descargand...");
+    let res
+    if(!isDev){
+    res = await euX.updater('Ra1NuX', 'chat-client', (e) => {
+        e == true ? app.exit() : console.log("descargando...");
     });
+    }else{
+        res = false
+    }
     return res;
 }
 
-update().then((e) => {
-console.log(e)
+update().then(() => {
 let mainWindows;
 const createWindows = () => {
     mainWindows = new BrowserWindow({
