@@ -1,26 +1,64 @@
 {
-  "name": "xchat",
-  "version": "1.0.1",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "build:win64": "electron-packager . XChat --out=dist/win --platform=win32 --arch=x64 app-version=1.2 --icon=Views/public/assets/icon.ico",
-    "build:unix": "electron-packager . XChat --out=dist/linux --platform=linux --arch=x64 app-version=1.2 --overwrite --icon=Views/public/assets/icon.png"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.61",
-    "electron": "^15.2.0",
-    "electron-packager": "^15.4.0"
-  },
-  "dependencies": {
-    "cross-fetch": "^3.1.4",
-    "electron-debug": "^3.2.0",
-    "electron-is-dev": "^2.0.0",
-    "electron-updater-x": "^1.0.8",
-    "jquery": "^3.6.0",
-    "socket.io": "^4.2.0"
-  }
+    "name": "example",
+    "author": {
+        "name": "Ra1NuX",
+        "email": "ra1nux.01@gmail.com"
+    },
+    "version": "0.0.0",
+    "main": "electron/electron.ts",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc --noEmit && vite build",
+        "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
+        "electron:pack": "electron-builder --dir",
+        "electron:dev": "concurrently -k \"cross-env BROWSER=none npm run dev\" \"npm run electron\"",
+        "electron:builder": "electron-builder",
+        "build:electron": "tsc --noEmit && cross-env IS_DEV=false ELECTRON=true vite build",
+        "app_build": "npm run build:electron && npm run electron:builder"
+    },
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "electron-is-dev": "^2.0.0",
+        "react": "^17.0.0",
+        "react-dom": "^17.0.0",
+        "react-icons": "^4.3.1"
+    },
+    "devDependencies": {
+        "@types/react": "^17.0.0",
+        "@types/react-dom": "^17.0.0",
+        "@vitejs/plugin-react": "^1.0.0",
+        "concurrently": "^6.3.0",
+        "cross-env": "^7.0.3",
+        "electron": "^15.3.0",
+        "electron-builder": "^22.13.1",
+        "typescript": "^4.3.2",
+        "vite": "^2.6.4",
+        "wait-on": "^6.0.0"
+    },
+    "build": {
+        "appId": "com.example",
+        "productName": "example",
+        "copyright": "Copyright © 2021 ${author}",
+        "linux": {
+            "target": [
+                "pacman"
+            ],
+            "icon": "build/icon.png"
+        },
+        "win": {
+            "icon": "build/icon.png"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true
+        },
+        "files": [
+            "dist/**/*",
+            "electron/**/*"
+        ],
+        "directories": {
+            "buildResources": "assets",
+            "output": "dist_electron"
+        }
+    }
 }

@@ -1,0 +1,149 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+#main{
+    background-color: #2D2D30;
+    height: 100vh
+}
+
+#title-bar {
+    z-index: 999;
+    position: fixed;
+    width: 100vw;
+    -webkit-app-region: drag;
+    height: 32px;
+    padding: 0px;
+    margin: 0px;
+    color: #ADADAD;
+    font-family: sans-serif;
+    background-color: #202022;
+    text-align: center;
+    box-shadow: 2px 0 5px .5px #ffffff11;
+    user-select: none;
+}
+
+#title {
+    line-height: 32px;
+    font-size: 14px;
+}
+
+#title-bar-btns {
+    -webkit-app-region: no-drag;
+    position: fixed;
+    top: 1px;
+    right: 0px;
+    margin: 1px;
+    margin-right: 1px;
+    display: flex;
+    box-sizing:border-box;
+}
+
+#title-bar-btns button {
+    height: 26px;
+    width: 36px;
+    border: none;
+    color: #000000;
+    background-color: #ffffff00;
+    font-size: 13px;
+    margin: 3px;
+    margin-top: 1px;
+    text-align: left;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+#title-bar-btns button > span {
+    font-size: 20px;
+}
+
+
+.content {
+    height: 80vh;
+    padding-top: 45px;
+    color: #CCCCCC;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    box-sizing: content-box;
+}
+
+.contentFS {
+    height: 95vh;
+    padding-top: 2vh;
+    color: #CCCCCC;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    box-sizing: content-box;
+}
+
+@media (min-height: 550px) {
+    .content {
+        height: 90vh;
+        padding-top: 55px;
+        color: #CCCCCC;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        box-sizing: content-box;
+    }
+}
+
+a {
+    color: #68217A;
+}
+
+#close-btn:hover {
+    background-color: rgba(255, 0, 0, 0.726);   
+}
+#close-btn:hover>span {
+    color: white;
+}
+
+#min-btn:hover {
+    background-color: rgba(185, 185, 185, 0.2);
+}
+
+#max-btn:hover {
+    background-color: rgba(185, 185, 185, 0.2);
+}
+
+/* #close-btn:hover {
+    background-color: rgba(255, 0, 0);
+    color: white;
+    border-radius: 20%;
+}
+
+#min-btn:hover {
+    background-color: rgb(3, 189, 3);
+    border-radius: 20%;
+}
+
+#max-btn:hover {
+    background-color: rgb(255, 255, 0);
+    border-radius: 20%;
+} */
+
+.lightbtn>span{
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+}
+button>span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#maximize{
+    font-size: 14px !important;
+    font-weight: lighter !important;
+}

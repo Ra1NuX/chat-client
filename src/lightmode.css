@@ -1,0 +1,17 @@
+
+.light {
+    background-color: #fafafa !important;
+    color: #202022;;
+}
+
+#title-bar.lightbar {
+    color: #202022;
+    background-color: #ebebeb;
+    box-shadow: 2px 0 5px .1px #0000003d;
+}
+
+
+#title-bar-btns.lightbar button:hover {
+    background-color: #858585;
+}
+
