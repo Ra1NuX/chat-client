@@ -1,5 +1,5 @@
 {
-    "name": "example",
+    "name": "chatx",
     "author": {
         "name": "Ra1NuX",
         "email": "ra1nux.01@gmail.com"
@@ -36,8 +36,8 @@
         "wait-on": "^6.0.0"
     },
     "build": {
-        "appId": "com.example",
-        "productName": "example",
+        "appId": "com.ChatX",
+        "productName": "ChatX",
         "copyright": "Copyright © 2021 ${author}",
         "linux": {
             "target": [

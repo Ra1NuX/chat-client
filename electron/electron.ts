@@ -16,17 +16,22 @@ console.log('This application is running in development mode: ', isDev);
 // Creating the Desktop application Settings. 
   function createWindow() {
     mainWindow = new BrowserWindow({
-      width: 800, 
-      height: 680, 
-      minHeight:300,
-      minWidth: 400,
+      // show: false,
+      width: 300, 
+      height: 600, 
       frame: false,
-      resizable:false,
+      resizable:true,
+      minWidth: 300,
+      backgroundColor: "#2e2c29",
+      // transparent: false,
       webPreferences: {
         preload: path.join(__dirname, 'preload.js'),
         devTools: isDev ? true : false
       }
     });
+    // mainWindow.once('ready-to-show', () => {
+    //   mainWindow.show()
+    // })
     mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../dist/index.html')}`);
     mainWindow.on('close', () => mainWindow = null);
   }

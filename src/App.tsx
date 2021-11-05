@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import pkg from '../package.json'
 import {BsMoonStarsFill, BsSunFill} from 'react-icons/bs'
 import {VscChromeMaximize} from 'react-icons/vsc'
 import './default.css';
 import "./lightmode.css"
+import Message from './componets/Message';
 
 
 declare global {
@@ -23,6 +24,7 @@ else{
 }
 function App() {
   const [FullScreen, setFullScreen] = useState(false);
+  const [title, setTitle] = useState<any>("left");
   const [isLight, setIsLight] = useState(false)
 
 
@@ -32,7 +34,16 @@ function App() {
   },[])
 
 // Check the resize event and check if it on FullScreen and change te state only if its different as the past state; 
-  window.addEventListener('resize', () => {if(FullScreen != isFullScreen()){setFullScreen(isFullScreen())}});
+  window.addEventListener('resize', () => 
+  {
+    console.log(window.innerWidth, FullScreen, isFullScreen())
+    if(FullScreen != isFullScreen()){
+      
+      setFullScreen(isFullScreen());
+      console.log(window.innerWidth)
+    }
+    window.innerWidth < 400 ? setTitle("left") : setTitle("center")
+  });
 
 // Change the mode of light of the windows ( dark or light );  
   const handleLight = () => {
@@ -51,9 +62,10 @@ function App() {
 
 // Creating the TitleBar only if the window is not in FullScreen. 
   const titleBar = () => {
+    console.log(title)
     if (!FullScreen){
-      return <div id="title-bar" className={light()+'bar'}>
-        <div id="title" className={light()+'bar'}>{pkg.build.productName}</div>
+      return <div id="title-bar" style={{textAlign: title}} className={light()+'bar'}>
+        <div id="title" className={light()+'bar'} >{pkg.build.productName}</div>
         <div id="title-bar-btns">
           <button className="lightbtn" style={isLight ? {color: "black"} : {color: "white"}} onClick={() => {handleLight()}}>
             <span>{!isLight ? <BsSunFill/> : <BsMoonStarsFill/>}</span>
@@ -72,7 +84,7 @@ function App() {
     <div className={light()} id="main">
       {titleBar()}
       <div className={fs() +" "+ light()}>
-        Here you can write your content
+        <Message message="2123123123" timestamp={123123213} name="hola"></Message>
       </div>
     </div>
   )

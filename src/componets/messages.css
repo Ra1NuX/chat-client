@@ -1,0 +1,8 @@
+.message{
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+.base{
+    background-color: #202022;
+    box-shadow: 2px 0 5px .5px #ffffff11;
+}
