@@ -1,17 +1,29 @@
 import "./messages.css"
+import "../lightmode.css"
+import { useContext } from "react";
+import { ContextTheme } from "../context";
 
 
 export default function(props: {message: string, timestamp: number, name?:string}){
+
+    const cTheme = useContext(ContextTheme);
     const {message, timestamp, name} = props; 
     
     const styles = {
         base:{
-            border: "1px solid rgba(100, 100, 100, .5)",
             borderRadius: 5,
             borderTopLeftRadius: 0,
-            margin: 10,
+            margin: 7,
             padding: 5,
             paddingLeft:7
+        },
+        base2:{
+            borderRadius: 5,
+            borderTopLeftRadius: 0,
+            margin: 7,
+            padding: 5,
+            paddingLeft:7,
+            backgroundColor: "#00aaaa"
         },
         name: {
             display:"block",
@@ -24,11 +36,13 @@ export default function(props: {message: string, timestamp: number, name?:string
     }
 
     return name != undefined ?
-        <div style={styles.base} className="base">
+        <div style={styles.base} className={"base " + cTheme+"dark"}>
             <span style={styles.name}>{name}:</span>
             {' '}<span className="message" style={styles.message}>{message}</span>
         </div> 
     :
-     <div>{"es tuyo"}</div>
+    <div style={styles.base2} className={"base " + cTheme+"dark"}>
+    {' '}<span className="message" style={styles.message}>{message}</span>
+    </div> 
     
 }

@@ -7,7 +7,8 @@ body {
     right: 0px;
     bottom: 0px;
 }
-#main{
+
+#main {
     background-color: #2D2D30;
     height: 100vh
 }
@@ -41,7 +42,7 @@ body {
     margin: 1px;
     margin-right: 1px;
     display: flex;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 #title-bar-btns button {
@@ -61,19 +62,18 @@ body {
     cursor: pointer;
 
 }
-#title-bar-btns button > span {
+
+#title-bar-btns button>span {
     font-size: 20px;
 }
 
 
 .content {
-    height: 80vh;
-    padding-top: 45px;
+    padding-top: 35px;
     color: #CCCCCC;
     display: flex;
-    flex: 1;
     flex-direction: column;
-    box-sizing: content-box;
+    box-sizing: border-box;
 }
 
 .contentFS {
@@ -83,18 +83,23 @@ body {
     display: flex;
     flex: 1;
     flex-direction: column;
-    box-sizing: content-box;
+    box-sizing: border-box;
 }
 
 @media (min-height: 550px) {
     .content {
-        height: 90vh;
-        padding-top: 55px;
+        height: 95vh;
         color: #CCCCCC;
         display: flex;
         flex: 1;
         flex-direction: column;
-        box-sizing: content-box;
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: 680px) {
+    .content {
+        height: 99vh;
     }
 }
 
@@ -103,8 +108,9 @@ a {
 }
 
 #close-btn:hover {
-    background-color: rgba(255, 0, 0, 0.726);   
+    background-color: rgba(255, 0, 0, 0.726);
 }
+
 #close-btn:hover>span {
     color: white;
 }
@@ -133,17 +139,19 @@ a {
     border-radius: 20%;
 } */
 
-.lightbtn>span{
+.lightbtn>span {
     display: flex;
     justify-content: center;
     border-radius: 50%;
 }
-button>span{
+
+button>span {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#maximize{
+
+#maximize {
     font-size: 14px !important;
     font-weight: lighter !important;
 }

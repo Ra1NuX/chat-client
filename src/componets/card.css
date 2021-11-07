@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+
+.body {
+    display: grid;
+    grid-template-rows: .5fr 11fr 1fr;
+    height: 93vh;
+    box-sizing: border-box;
+}
+
+
+.header {
+    background-color: #fff;
+}
+
+.allMessages {
+    overflow-y: scroll;
+    margin: 10px;
+    border-radius: 20px;
+    font-family: Fira Code;
+    font-size: 13px;
+}
+
+.allMessages>* {
+    box-shadow: 0 0 5px .5px #80808081 !important;
+}
+
+
+.allMessages::-webkit-scrollbar {
+    display: none;
+}
+
+.message {
+    padding: 2px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    margin: 8px;
+    margin-top: 7px;
+}
+
+.footer>input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 2px;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    background-color: #202022;
+    box-shadow: 0 0 5px .5px #80808081 !important;
+}
+
+.footer>div {
+    display: flex;
+    width: 60px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer>div>button {
+    box-sizing: border-box;
+    height: 100%;
+    border: 0;
+    border-radius: 10px;
+    margin-left: 2px;
+    border: 2px solid #2a6ff0;
+    color: #2a6ff0;
+    background-color: #202022;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+}
+
+.footer>div>button:hover {
+    transition: all .5s ease;
+    background-color: #2a6ff0 !important;
+    color: white;
+
+}
+
+.footer>div>button:focus {
+    animation: move .5s ease;
+}
+
+@keyframes move {
+    0% {
+        width: 53px
+    }
+
+    50% {
+        width: 53px
+    }
+
+    75% {
+        width: 52px;
+    }
+
+    99% {
+        width: 62px;
+
+    }
+}

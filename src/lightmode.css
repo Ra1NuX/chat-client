@@ -1,17 +1,30 @@
-
 .light {
     background-color: #fafafa !important;
-    color: #202022;;
+    color: #202022;
 }
 
 #title-bar.lightbar {
     color: #202022;
     background-color: #ebebeb;
-    box-shadow: 2px 0 5px .1px #0000003d;
+    box-shadow: 0 1px 5px .1px #0000003d;
 }
 
+.lightdark {
+    color: #202022;
+    border-top: 1px solid white !important;
+    border-left: 1px solid white !important;
+    background-color: #ebebeb !important;
+    border-bottom: 1px solid lightskyblue !important;
+}
+
+
+.darkdark {
+    border-top: 1px solid #1616166b;
+    border-left: 1px solid #1616166b;
+    box-shadow: 0 0 5px .5px #88888881 !important;
+    border-bottom: 1px solid rgb(29, 29, 29) !important;
+}
 
 #title-bar-btns.lightbar button:hover {
     background-color: #858585;
 }
-
